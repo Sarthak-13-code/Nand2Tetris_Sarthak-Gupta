@@ -1,0 +1,72 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/3/a/Register.hdl
+/**
+ * 16-bit register:
+ * If load is asserted, the register's value is set to in;
+ * Otherwise, the register maintains its current value:
+ * if (load(t)) out(t+1) = int(t), else out(t+1) = out(t)
+ */
+CHIP Register {
+    IN in[16], load;
+    OUT out[16];
+
+    PARTS:
+    //// Replace this comment with your code.
+    // Select old value or new input
+    Mux(a=stored0, b=in[0], sel=load, out=next0);
+    Mux(a=stored1, b=in[1], sel=load, out=next1);
+    Mux(a=stored2, b=in[2], sel=load, out=next2);
+    Mux(a=stored3, b=in[3], sel=load, out=next3);
+    Mux(a=stored4, b=in[4], sel=load, out=next4);
+    Mux(a=stored5, b=in[5], sel=load, out=next5);
+    Mux(a=stored6, b=in[6], sel=load, out=next6);
+    Mux(a=stored7, b=in[7], sel=load, out=next7);
+    Mux(a=stored8, b=in[8], sel=load, out=next8);
+    Mux(a=stored9, b=in[9], sel=load, out=next9);
+    Mux(a=stored10, b=in[10], sel=load, out=next10);
+    Mux(a=stored11, b=in[11], sel=load, out=next11);
+    Mux(a=stored12, b=in[12], sel=load, out=next12);
+    Mux(a=stored13, b=in[13], sel=load, out=next13);
+    Mux(a=stored14, b=in[14], sel=load, out=next14);
+    Mux(a=stored15, b=in[15], sel=load, out=next15);
+
+
+    // Store each bit
+    DFF(in=next0, out=stored0);
+    DFF(in=next1, out=stored1);
+    DFF(in=next2, out=stored2);
+    DFF(in=next3, out=stored3);
+    DFF(in=next4, out=stored4);
+    DFF(in=next5, out=stored5);
+    DFF(in=next6, out=stored6);
+    DFF(in=next7, out=stored7);
+    DFF(in=next8, out=stored8);
+    DFF(in=next9, out=stored9);
+    DFF(in=next10, out=stored10);
+    DFF(in=next11, out=stored11);
+    DFF(in=next12, out=stored12);
+    DFF(in=next13, out=stored13);
+    DFF(in=next14, out=stored14);
+    DFF(in=next15, out=stored15);
+
+
+    // Send stored values to output
+    Mux(a=stored0, b=stored0, sel=false, out=out[0]);
+    Mux(a=stored1, b=stored1, sel=false, out=out[1]);
+    Mux(a=stored2, b=stored2, sel=false, out=out[2]);
+    Mux(a=stored3, b=stored3, sel=false, out=out[3]);
+    Mux(a=stored4, b=stored4, sel=false, out=out[4]);
+    Mux(a=stored5, b=stored5, sel=false, out=out[5]);
+    Mux(a=stored6, b=stored6, sel=false, out=out[6]);
+    Mux(a=stored7, b=stored7, sel=false, out=out[7]);
+    Mux(a=stored8, b=stored8, sel=false, out=out[8]);
+    Mux(a=stored9, b=stored9, sel=false, out=out[9]);
+    Mux(a=stored10, b=stored10, sel=false, out=out[10]);
+    Mux(a=stored11, b=stored11, sel=false, out=out[11]);
+    Mux(a=stored12, b=stored12, sel=false, out=out[12]);
+    Mux(a=stored13, b=stored13, sel=false, out=out[13]);
+    Mux(a=stored14, b=stored14, sel=false, out=out[14]);
+    Mux(a=stored15, b=stored15, sel=false, out=out[15]);
+}
